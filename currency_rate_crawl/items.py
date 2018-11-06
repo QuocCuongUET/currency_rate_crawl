@@ -8,7 +8,13 @@
 import scrapy
 
 
-class CurrencyRateCrawlItem(scrapy.Item):
+class CurrencyRateItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+
+    transfer_date              = scrapy.Field()
+    based_currency_id          = scrapy.Field()
+    transfer_currency_id       = scrapy.Field()
+    rate_currency_transfer     = scrapy.Field()
+    rate_tax_currency_transfer = scrapy.Field()
+    update_user_id             = scrapy.Field()
