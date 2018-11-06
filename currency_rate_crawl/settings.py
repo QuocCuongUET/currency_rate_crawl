@@ -14,6 +14,14 @@ BOT_NAME = 'currency_rate_crawl'
 SPIDER_MODULES = ['currency_rate_crawl.spiders']
 NEWSPIDER_MODULE = 'currency_rate_crawl.spiders'
 
+CONNECTION_STRING = "{drivername}://{user}:{passwd}@{host}:{port}/{db_name}?charset=utf8".format(
+    drivername="mysql+pymysql",
+    user="root",
+    passwd="123456",
+    host="172.16.0.11",
+    port="3306",
+    db_name="bridgenotedb",
+)
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'currency_rate_crawl (+http://www.yourdomain.com)'

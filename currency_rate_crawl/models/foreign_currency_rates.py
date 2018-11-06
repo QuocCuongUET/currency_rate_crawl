@@ -1,4 +1,20 @@
-from sqlalchemy import create_engine, Column, Integer, Date, Numeric, TIMESTAMP
+from sqlalchemy import Column, Integer, Date, Numeric, TIMESTAMP
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.engine import create_engine
+from scrapy.utils.project import get_project_settings
+
+DeclarativeBase = declarative_base()
+
+# Open connect to database bridgenoedb
+def db_connect():
+
+    return create_engine(get_project_settings().get("CONNECTION_STRING"), echo=True)
+
+
+# Create table for database
+def create_table(engine):
+
+    DeclarativeBase.metadata.create_all(engine)
 
 
 class ForeignCurrencyRates(Base):
