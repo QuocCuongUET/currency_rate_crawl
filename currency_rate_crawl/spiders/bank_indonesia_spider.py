@@ -1,6 +1,6 @@
 import scrapy
-from currency_rate_crawl.items import CurrencyRateItem
-from currency_rate_crawl.currency_id import detectCurrencyId
+from items import CurrencyRateItem
+from currency_id import detectCurrencyId
 from datetime import datetime, timedelta
 
 class BankIndonesiaSpider(scrapy.Spider):
