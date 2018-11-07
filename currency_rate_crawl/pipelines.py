@@ -36,9 +36,10 @@ class WriteToMySqlDBPipeline(object):
 
     def process_item(self, item, spider):
 
-        obj = self.createForeignCurrencyRates(item)
+        if self.validateToSaveData(item):
+            obj = self.createForeignCurrencyRates(item)
 
-        self.listForeignCurrencyRates.append(obj)
+            self.listForeignCurrencyRates.append(obj)
 
         return item
 
@@ -54,4 +55,9 @@ class WriteToMySqlDBPipeline(object):
             update_user_id              = data['update_user_id'],
             created_at                  = data['created_at']
             )
+
+
+    def validateToSaveData(self, item):
+
+        return item['transfer_currency_id'] != 0
 
