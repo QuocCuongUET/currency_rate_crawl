@@ -42,9 +42,9 @@ class BankIndonesiaSpider(scrapy.Spider):
 
         number_of_item = float(data[1].extract())
 
-        price_of_sell = self.formatPriceToFloat(data[2].extract())
+        price_of_sell  = self.formatPriceToFloat(data[2].extract())
 
-        price_of_buy  = self.formatPriceToFloat(data[3].extract())
+        price_of_buy   = self.formatPriceToFloat(data[3].extract())
 
 
         item = CurrencyRateItem()
@@ -60,6 +60,8 @@ class BankIndonesiaSpider(scrapy.Spider):
         item['rate_tax_currency_transfer']  = 0
 
         item['update_user_id']              = 0
+
+        item['created_at']                  = datetime.now()
 
 
         return item

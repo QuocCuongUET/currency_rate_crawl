@@ -17,7 +17,7 @@ def create_table(engine):
     DeclarativeBase.metadata.create_all(engine)
 
 
-class ForeignCurrencyRates(Base):
+class ForeignCurrencyRates(DeclarativeBase):
 
     __tablename__ = "foreign_currency_rates"
 

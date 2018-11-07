@@ -18,3 +18,4 @@ class CurrencyRateItem(scrapy.Item):
     rate_currency_transfer     = scrapy.Field()
     rate_tax_currency_transfer = scrapy.Field()
     update_user_id             = scrapy.Field()
+    created_at                 = scrapy.Field()
