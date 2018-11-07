@@ -1,5 +1,6 @@
 from sqlalchemy.orm import sessionmaker
 from models.foreign_currency_rates import db_connect, create_table, ForeignCurrencyRates
+from scrapy.exceptions import DropItem
 
 class CurrencyRateCrawlPipeline(object):
     def process_item(self, item, spider):
@@ -36,12 +37,15 @@ class WriteToMySqlDBPipeline(object):
 
     def process_item(self, item, spider):
 
-        if self.validateToSaveData(item):
+        if item['transfer_currency_id'] == 0:
+            raise DropItem("Item not valid: %s" % item)
+
+        else:
             obj = self.createForeignCurrencyRates(item)
 
             self.listForeignCurrencyRates.append(obj)
 
-        return item
+            return item
 
 
     def createForeignCurrencyRates(self, data):
@@ -55,9 +59,4 @@ class WriteToMySqlDBPipeline(object):
             update_user_id              = data['update_user_id'],
             created_at                  = data['created_at']
             )
-
-
-    def validateToSaveData(self, item):
-
-        return item['transfer_currency_id'] != 0
 
